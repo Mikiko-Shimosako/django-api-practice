@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import dj_database_url
+import os
 
 from pathlib import Path
 
@@ -20,8 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e%ood_(tf7ormmslw%l7_%7u4jf4)#^)1)5xxdk4!$e*jd@u)+'
-
+SECRET_KEY = os.environ.get('SECRET_KEY', 'insecure-default-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -76,10 +77,7 @@ WSGI_APPLICATION = 'api_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 
