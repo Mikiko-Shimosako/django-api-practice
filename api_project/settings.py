@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',  # ← DRF を有効化
     'django_filters',
     'books',           # ← 自分のアプリを追加
-    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -132,4 +131,3 @@ REST_FRAMEWORK = {
     ),
 }
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
